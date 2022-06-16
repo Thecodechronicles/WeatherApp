@@ -1,4 +1,3 @@
-// var request = require('request');
 var georequest = require('./georequest');
 var fs = require('fs');
 var apiObj = {};
@@ -7,18 +6,14 @@ var geocode = (key, address, callback) => {
     if (key) {
         apiObj = { apikey: key }
         var apiJsonString = JSON.stringify(apiObj);
-        console.log('new key: ', key);
         fs.writeFile('apikey.json', apiJsonString, (err) => {
             if (err) throw err;
 
-            console.log(apiJsonString);
-            console.log('apiKey saved: ', apiObj);
+            console.log('apiKey written: ', apiObj);
             georequest(callback, address, apiObj);
         });
         return;
     } else if (!apiObj.apikey) {
-        console.log('qwerty');
-        // apiObj.apikey = 'I9mgo9G1mD9yQirN9uIK4RA5UsAmHE6I';
         fs.readFile('apikey.json', (err, data) => {
             if (err) {
                 console.log(err);
@@ -33,11 +28,7 @@ var geocode = (key, address, callback) => {
         });
         return;
     }
-    // else if (apiObj.apikey) {
-    console.log('yes key is not null');
-    console.log('current apikey: ', apiObj);
     georequest(callback, address, apiObj);
-    // }
 }
 
 module.exports = geocode;

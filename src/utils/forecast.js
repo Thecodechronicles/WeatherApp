@@ -2,6 +2,7 @@ var request = require('request');
 var weatherunits = require('./weatherunits');
 
 var forecast = (latitude, longitude, callback) => {
+    //apikey provides 1000 calls/day
     var apiKey = 'dc9cf54ef9917c436ae2fcc1330c6a30';
     request('https://api.darksky.net/forecast/' + apiKey + '/' + latitude + ',' + longitude, (error, response) => {
         var responseData = JSON.parse(response.body);

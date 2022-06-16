@@ -35,12 +35,9 @@ app.get('/help', (req, res) => {
 })
 
 app.get('/weather', (req, res) => {
-    // res.send('Welcome! This is Weather App !');
-    console.log('request parameters: ', req.query);
     var address = req.query.address;
     var key = req.query.key;
     if (key === 'undefined') key = undefined;
-    console.log('key: ', key);
     if (!address) {
         return res.send({ error: 'address must be provided' })
     }
@@ -50,7 +47,6 @@ app.get('/weather', (req, res) => {
         } else {
             forecast(latitude, longitude, (error, { celcius, humidity, precipitation, summary, hourlySummary, pressure, windSpeed } = {}) => {
                 if (error) {
-                    console.log(error);
                     return res.send({ error });
                 } else {
                     var forecastString = 'Your weather forecast for the day.. ' + '<br><br>' + 'current conditions: ' + summary + '.' + hourlySummary + '<br>' + 'temperature: ' + celcius + ' °C' + '<br>' + 'humidity: ' + humidity + ' % ' + '<br>' + 'pressure: ' + pressure + ' hPa' + '<br>' + 'windspeed: ' + windSpeed + ' kph' + '<br>' + 'precipitation: ' + precipitation + ' %';
