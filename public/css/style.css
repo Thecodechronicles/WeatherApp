@@ -1,0 +1,57 @@
+body {
+    width: 550px;
+    margin: auto;
+    padding-left: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+p {
+    font-size: large;
+}
+
+.main-content {
+    flex-grow: 1;
+}
+
+#note {
+    border-top: 1px solid lightgrey;
+    padding-top: 25px;
+    font-size: larger;
+    color: grey;
+    margin: 25px auto;
+}
+
+a {
+    font-size: large;
+    margin: auto 11px auto 0px;
+    color: grey;
+    text-decoration: none;
+}
+
+input {
+    height: 25px;
+    border: 2px grey solid;
+    border-radius: 5px;
+}
+
+button {
+    height: 25px;
+    border-radius: 5px;
+}
+
+#weatherReport {
+    margin: 25px auto;
+    font-size: large;
+
+}
+
+/* header {
+    display: inline-block;
+}
+
+footer {
+    display: inline-block;
+} */
