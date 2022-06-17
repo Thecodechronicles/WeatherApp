@@ -18,7 +18,7 @@ submitElement.addEventListener('click', (e) => {
                 if (data.error) {
                     weatherElement.innerHTML = data.error;
                     if (data.error.code === 'ServiceUnavailable' || data.error.code === 'Unauthorized') {
-                        weatherElement.innerHTML = '<input id="keybox" type="text" placeholder="Enter another key">' + '<br></br>' + 'Enter New Key ! ' + 'Reason: ' + data.error.code
+                        weatherElement.innerHTML = '<input id="keybox" type="text" placeholder="Enter another key please">' + '<br></br>' + 'Enter New Key ! ' + 'Reason: ' + data.error.code
                     }
                 } else {
                     weatherElement.innerHTML = data.weatherForecast + '<br><br>' + 'Location: ' + data.location;
