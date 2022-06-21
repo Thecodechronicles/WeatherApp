@@ -9,6 +9,7 @@ const app = express();
 const publicPath = path.join(__dirname, '../public');
 const viewsPath = path.join(__dirname, '../template/views');
 const hbsPartialsPath = path.join(__dirname, '../template/partials');
+const port = process.env.PORT || 3000;
 
 hbs.registerPartials(hbsPartialsPath);
 app.set('view engine', 'hbs');
@@ -92,6 +93,6 @@ app.get('*', (req, res) => {
     });
 })
 
-app.listen(3000, () => {
-    console.log('Listening on port 3000');
+app.listen(port, () => {
+    console.log('Listening on port: ', port);
 })
