@@ -10,7 +10,7 @@ submitElement.addEventListener('click', (e) => {
     console.log(keyElement);
     if (keyElement) {
         key = keyElement.value;
-        console.log('key entered: ', key);
+        console.log('New key entered: ', key);
     }
     if (location) {
         var weatherElement = document.getElementById('weatherReport');
