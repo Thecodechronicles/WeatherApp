@@ -20,7 +20,7 @@ app.use(cors());
 app.get('', (req, res) => {
     // res.send('<h1>Hi! You are looking at an Express app !!</h1>');
     res.render('index', {
-        headNote: 'Welcome !',
+        headNote: 'Weather Forecast!',
         content: 'For city wise weather report, visit this site',
         footNote: 'Ankit Mittal'
     });

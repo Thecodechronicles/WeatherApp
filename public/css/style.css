@@ -6,6 +6,8 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-color: rgb(31, 144, 189);
+    color: white;
 }
 
 p {
@@ -13,21 +15,31 @@ p {
 }
 
 .main-content {
+    margin-top: 25px;
     flex-grow: 1;
+}
+
+.main-content h1 {
+    color: rgb(22, 254, 76);
+}
+
+.main-content p img {
+    width: auto;
+    height: 275px;
 }
 
 #note {
     border-top: 1px solid lightgrey;
     padding-top: 25px;
     font-size: larger;
-    color: grey;
+    color: rgba(255, 255, 255, 0.857);
     margin: 25px auto;
 }
 
 a {
-    font-size: large;
+    font-size: larger;
     margin: auto 11px auto 0px;
-    color: grey;
+    color: whitesmoke;
     text-decoration: none;
 }
 
