@@ -6,7 +6,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: rgb(31, 144, 189);
+    background-color: rgb(88, 123, 167);
     color: white;
 }
 
@@ -20,7 +20,7 @@ p {
 }
 
 .main-content h1 {
-    color: rgb(22, 254, 76);
+    color: rgb(156, 236, 71);
 }
 
 .main-content p img {
