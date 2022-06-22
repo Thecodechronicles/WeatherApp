@@ -6,7 +6,7 @@ var georequest = (callback, address, apiobj) => {
         var responseData = JSON.parse(response.body);
         if (error) {
             callback(error);
-        } else if (responseData.body === '[]') {
+        } else if (JSON.stringify(responseData) === '[]') {
             callback('No place found with the name ' + "'" + address + "'" + ' ' + response.body);
         } else if (responseData.Code) {
             var errobj = {
