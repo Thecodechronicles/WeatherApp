@@ -20,7 +20,7 @@ app.use(cors());
 app.get('', (req, res) => {
     // res.send('<h1>Hi! You are looking at an Express app !!</h1>');
     res.render('index', {
-        headNote: 'Welcome !',
+        headNote: 'Weather Forecast !',
         content: 'For city wise weather report, visit this site',
         footNote: 'Ankit Mittal'
     });
@@ -50,7 +50,7 @@ app.get('/weather', (req, res) => {
                 if (error) {
                     return res.send({ error });
                 } else {
-                    var forecastString = 'Your weather forecast for the day.. ' + '<br><br>' + 'current conditions: ' + summary + '.' + hourlySummary + '<br>' + 'temperature: ' + celcius + ' °C' + '<br>' + 'humidity: ' + humidity + ' % ' + '<br>' + 'pressure: ' + pressure + ' hPa' + '<br>' + 'windspeed: ' + windSpeed + ' kph' + '<br>' + 'precipitation: ' + precipitation + ' %';
+                    var forecastString = 'Your weather forecast for the day.. ' + '<br><br>' + 'Current Conditions: ' + summary + '<br>' + 'This Hour: ' + hourlySummary + '<br>' + 'Temperature: ' + celcius + ' °C' + '<br>' + 'Humidity: ' + humidity + ' % ' + '<br>' + 'Pressure: ' + pressure + ' hPa' + '<br>' + 'Windspeed: ' + windSpeed + ' kph' + '<br>' + 'Precipitation: ' + precipitation + ' %';
                     res.header("Access-Control-Allow-Origin", "*");
                     res.send({
                         weatherForecast: forecastString,
