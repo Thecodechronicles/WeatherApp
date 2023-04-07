@@ -14,7 +14,12 @@ const port = process.env.PORT || 3000;
 hbs.registerPartials(hbsPartialsPath);
 app.set('view engine', 'hbs');
 app.set('views', viewsPath);
-app.use(express.static(publicPath));
+app.use(express.static(publicPath)); // 'express.static' returns a function confirming to the function signature that 'app.use' uses i.e. 'function (req, res, next) {}'  // Example of Built-in middleware
+
+// app.use('/help', function (req, res, next) { // Example of Application level middleware
+//     console.log('app.use running !');
+//     next();
+// });
 
 app.use(cors());
 app.get('', (req, res) => {
@@ -58,7 +63,6 @@ app.get('/weather', (req, res) => {
                         location,
                     });
                 }
-
             });
         }
     })

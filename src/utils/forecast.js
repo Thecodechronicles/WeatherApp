@@ -3,9 +3,15 @@ var weatherunits = require('./weatherunits');
 
 var forecast = (latitude, longitude, callback) => {
     //apikey provides 1000 calls/day
-    var apiKey = 'dc9cf54ef9917c436ae2fcc1330c6a30';
+    // var apiKey = 'dc9cf54ef9917c436ae2fcc1330c6a30';
+    var apiKey = "46d48e01ec521c5cf12afb8ec40ddb5b"; // for openweathermap api
     request('https://api.darksky.net/forecast/' + apiKey + '/' + latitude + ',' + longitude, (error, response) => {
-        var responseData = JSON.parse(response.body);
+        console.log('latitude: ', latitude);
+        console.log('longitude: ', longitude);
+
+
+        // console.log('api response: ', response.body);
+        // var responseData = JSON.parse(response.body);
         if (error) {
             callback(error);
         } else if (responseData.error) {
@@ -25,7 +31,6 @@ var forecast = (latitude, longitude, callback) => {
 
             callback(undefined, fullResponseData);
         }
-
     })
 }
 
