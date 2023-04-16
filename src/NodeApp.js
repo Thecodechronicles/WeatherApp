@@ -16,6 +16,8 @@ app.set('view engine', 'hbs');
 app.set('views', viewsPath);
 app.use(express.static(publicPath)); // 'express.static' returns a function confirming to the function signature that 'app.use' uses i.e. 'function (req, res, next) {}'  // Example of Built-in middleware
 
+// console.log('express static: ', express.static(publicPath).toString());
+
 // app.use('/help', function (req, res, next) { // Example of Application level middleware
 //     console.log('app.use running !');
 //     next();
@@ -44,18 +46,18 @@ app.get('/weather', (req, res) => {
     var address = req.query.address;
     var key = req.query.key;
     if (key === 'undefined') key = undefined;
-    if (!address) {
-        return res.send({ error: 'address must be provided' })
-    }
+    // if (!address) {
+    //     return res.send({ error: 'address must be provided' })
+    // }
     geocode(key, address, (error, { latitude, longitude, location } = {}) => {
         if (error) {
             return res.send({ error });
         } else {
-            forecast(latitude, longitude, (error, { celcius, humidity, precipitation, summary, hourlySummary, pressure, windSpeed } = {}) => {
+            forecast(latitude, longitude, (error, { celcius, humidity, precipitation, summary, sunRise, pressure, windSpeed } = {}) => {
                 if (error) {
                     return res.send({ error });
                 } else {
-                    var forecastString = 'Your weather forecast for the day.. ' + '<br><br>' + 'Current Conditions: ' + summary + '<br>' + 'This Hour: ' + hourlySummary + '<br>' + 'Temperature: ' + celcius + ' °C' + '<br>' + 'Humidity: ' + humidity + ' % ' + '<br>' + 'Pressure: ' + pressure + ' hPa' + '<br>' + 'Windspeed: ' + windSpeed + ' kph' + '<br>' + 'Precipitation: ' + precipitation + ' %';
+                    var forecastString = 'Your weather forecast for the day.. ' + '<br><br>' + 'Current Conditions: ' + summary + '<br>' + 'Sunrise: ' + sunRise + '<br>' + 'Temperature: ' + celcius + ' °C' + '<br>' + 'Humidity: ' + humidity + ' % ' + '<br>' + 'Pressure: ' + pressure + ' hPa' + '<br>' + 'Windspeed: ' + windSpeed + ' kph' + '<br>' + 'Precipitation: ' + precipitation + ' %';
                     res.header("Access-Control-Allow-Origin", "*");
                     res.send({
                         weatherForecast: forecastString,
