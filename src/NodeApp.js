@@ -14,18 +14,10 @@ const port = process.env.PORT || 3000;
 hbs.registerPartials(hbsPartialsPath);
 app.set('view engine', 'hbs');
 app.set('views', viewsPath);
-app.use(express.static(publicPath)); // 'express.static' returns a function confirming to the function signature that 'app.use' uses i.e. 'function (req, res, next) {}'  // Example of Built-in middleware
-
-// console.log('express static: ', express.static(publicPath).toString());
-
-// app.use('/help', function (req, res, next) { // Example of Application level middleware
-//     console.log('app.use running !');
-//     next();
-// });
+app.use(express.static(publicPath));
 
 app.use(cors());
 app.get('', (req, res) => {
-    // res.send('<h1>Hi! You are looking at an Express app !!</h1>');
     res.render('index', {
         headNote: 'Weather Forecast !',
         content: 'For city wise weather report, visit this site',
@@ -34,7 +26,6 @@ app.get('', (req, res) => {
 })
 
 app.get('/help', (req, res) => {
-    // res.send('Welcome! This is Weather App !');
     res.render('help', {
         headNote: 'Help Topics',
         content: 'Find the topics you need help with',
@@ -46,9 +37,7 @@ app.get('/weather', (req, res) => {
     var address = req.query.address;
     var key = req.query.key;
     if (key === 'undefined') key = undefined;
-    // if (!address) {
-    //     return res.send({ error: 'address must be provided' })
-    // }
+
     geocode(key, address, (error, { latitude, longitude, location } = {}) => {
         if (error) {
             return res.send({ error });
@@ -68,11 +57,6 @@ app.get('/weather', (req, res) => {
             });
         }
     })
-    // res.send({
-    //     forecast: 'It is snowing',
-    //     location: 'Kullu Manali',
-    //     address: req.query.address
-    // })
 })
 
 app.get('/products', (req, res) => {
