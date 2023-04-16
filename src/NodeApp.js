@@ -18,7 +18,6 @@ app.use(express.static(publicPath));
 
 app.use(cors());
 app.get('', (req, res) => {
-    // res.send('<h1>Hi! You are looking at an Express app !!</h1>');
     res.render('index', {
         headNote: 'Weather Forecast !',
         content: 'For city wise weather report, visit this site',
@@ -27,7 +26,6 @@ app.get('', (req, res) => {
 })
 
 app.get('/help', (req, res) => {
-    // res.send('Welcome! This is Weather App !');
     res.render('help', {
         headNote: 'Help Topics',
         content: 'Find the topics you need help with',
@@ -39,18 +37,16 @@ app.get('/weather', (req, res) => {
     var address = req.query.address;
     var key = req.query.key;
     if (key === 'undefined') key = undefined;
-    if (!address) {
-        return res.send({ error: 'address must be provided' })
-    }
+
     geocode(key, address, (error, { latitude, longitude, location } = {}) => {
         if (error) {
             return res.send({ error });
         } else {
-            forecast(latitude, longitude, (error, { celcius, humidity, precipitation, summary, hourlySummary, pressure, windSpeed } = {}) => {
+            forecast(latitude, longitude, (error, { celcius, humidity, precipitation, summary, sunRise, pressure, windSpeed } = {}) => {
                 if (error) {
                     return res.send({ error });
                 } else {
-                    var forecastString = 'Your weather forecast for the day.. ' + '<br><br>' + 'Current Conditions: ' + summary + '<br>' + 'This Hour: ' + hourlySummary + '<br>' + 'Temperature: ' + celcius + ' °C' + '<br>' + 'Humidity: ' + humidity + ' % ' + '<br>' + 'Pressure: ' + pressure + ' hPa' + '<br>' + 'Windspeed: ' + windSpeed + ' kph' + '<br>' + 'Precipitation: ' + precipitation + ' %';
+                    var forecastString = 'Your weather forecast for the day.. ' + '<br><br>' + 'Current Conditions: ' + summary + '<br>' + 'Sunrise: ' + sunRise + '<br>' + 'Temperature: ' + celcius + ' °C' + '<br>' + 'Humidity: ' + humidity + ' % ' + '<br>' + 'Pressure: ' + pressure + ' hPa' + '<br>' + 'Windspeed: ' + windSpeed + ' kph' + '<br>' + 'Precipitation: ' + precipitation + ' %';
                     res.header("Access-Control-Allow-Origin", "*");
                     res.send({
                         weatherForecast: forecastString,
@@ -58,15 +54,9 @@ app.get('/weather', (req, res) => {
                         location,
                     });
                 }
-
             });
         }
     })
-    // res.send({
-    //     forecast: 'It is snowing',
-    //     location: 'Kullu Manali',
-    //     address: req.query.address
-    // })
 })
 
 app.get('/products', (req, res) => {
